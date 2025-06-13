@@ -28,7 +28,6 @@ module.exports = function (db) {
         .find(location ? filter : {}) // Empty filter = return all
         .project({
           _id: 1,
-          // listing_id: 0,
           name: 1,
           summary: 1,
           price: 1,

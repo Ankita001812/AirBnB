@@ -116,7 +116,7 @@ const HomePage = () => {
       <div className="listing-section">
         <h3>
           {listings.length > 0
-            ? `Available Listings (${listings.length})`
+            ? `${listings.length} number of Listings Available`
             : "No listings found."}
         </h3>
 
