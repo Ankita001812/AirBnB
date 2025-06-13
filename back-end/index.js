@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 // import movieRoute from "./routes/movieRoute";
 
-
 const cors = require("cors");
 const app = express();
 
@@ -33,7 +32,8 @@ async function connectToDatabase() {
 }
 console.log("Mongo URI:", process.env.MONGO_URI);
 
-const db = client.db("Movies");
+// const db = client.db("Movies");
+const db = client.db("sample_airbnb");
 
 connectToDatabase();
 
@@ -41,9 +41,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Import routes with DB
-const movieRoutes = require("./routes/movieRoute")(db);
-app.use("/api", movieRoutes);
+// const movieRoutes = require("./routes/movieRoute")(db);
+// app.use("/api", movieRoutes);
 
+const movieRoutes = require("./routes/listingRoute")(db);
+app.use("/api", movieRoutes);
 
 app.use((req, res) => {
   res.status(404).send("Not found");
