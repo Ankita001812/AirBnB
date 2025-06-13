@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../style/add.css";
+// import "../style/add.css";
 
 function AddMovie() {
   const navigate = useNavigate();
