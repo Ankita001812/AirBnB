@@ -34,7 +34,6 @@ module.exports = function (db) {
           price: 1,
           "review_score": "$review_scores.review_scores_rating",
         })
-        .limit(20)
         .toArray();
 
       // Handle Decimal128 objects and ensure clean values

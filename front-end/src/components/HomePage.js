@@ -114,13 +114,19 @@ const HomePage = () => {
 
       {/* Listings */}
       <div className="listing-section">
-        <h3>Available Listings</h3>
-        {listings.length === 0 ? (
-          <p>No listings found.</p>
-        ) : (
+        <h3>
+          {listings.length > 0
+            ? `Available Listings (${listings.length})`
+            : "No listings found."}
+        </h3>
+
+        {listings.length > 0 && (
           <div className="listing-grid">
             {listings.map((listing) => (
-              <div key={listing.listing_id || listing._id} className="listing-card">
+              <div
+                key={listing.listing_id || listing._id}
+                className="listing-card"
+              >
                 <h4
                   className="listing-title"
                   onClick={() => goToBooking(listing.listing_id || listing._id)}
