@@ -48,7 +48,7 @@ const BookingPage = () => {
       if (response.ok) {
 
         const booking = await response.json(); 
-        alert("Booking submitted successfully!");
+        alert(" 🎉 Booking submitted successfully! ");
         navigate("/confirmation", { state: { booking } }); 
 
         setFormData({
