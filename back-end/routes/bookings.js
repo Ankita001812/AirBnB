@@ -8,6 +8,7 @@ router.post("/booking", async (req, res) => {
     const booking = new Booking(req.body);
     const savedBooking = await booking.save();
     res.status(201).json(savedBooking);
+    console.log("Booking created successfully:", savedBooking);
   } catch (err) {
     console.error("Booking creation error:", err);
     res.status(500).json({ error: "Failed to create booking" });

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import "../style/Booking.css"; 
+import "../style/Booking.css";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const BookingPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const listingId = searchParams.get("listing_id");
+
   const [formData, setFormData] = useState({
     startDate: "",
     endDate: "",
@@ -20,19 +26,46 @@ const BookingPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Booking data submitted:", formData);
-    alert("Booking submitted successfully!");
-    setFormData({
-      startDate: "",
-      endDate: "",
-      clientName: "",
-      email: "",
-      mobilePhone: "",
-      postalAddress: "",
-      homeAddress: "",
-    });
+    // const listingId = searchParams.get("listing_id");
+    if (!listingId) {
+      alert("No listing selected for booking.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:4001/api/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, listingId }),
+      });
+
+      console.log("Response:", response);
+
+      if (response.ok) {
+        alert("Booking submitted successfully!");
+
+        setFormData({
+          startDate: "",
+          endDate: "",
+          clientName: "",
+          email: "",
+          mobilePhone: "",
+          postalAddress: "",
+          homeAddress: "",
+        });
+
+        navigate("/");
+      } else {
+        alert("Failed to submit booking");
+      }
+    } catch (error) {
+      alert("Error submitting booking");
+      console.error(error);
+    }
   };
 
   return (
@@ -51,7 +84,7 @@ const BookingPage = () => {
         </div>
 
         <div>
-          <label>CHeck-Out Date: *</label>
+          <label>Check-Out Date: *</label>
           <input
             type="date"
             name="endDate"
@@ -64,7 +97,7 @@ const BookingPage = () => {
         <h2>Your Information</h2>
 
         <div>
-          <label>Full-Name: *</label>
+          <label>Full Name: *</label>
           <input
             type="text"
             name="clientName"
