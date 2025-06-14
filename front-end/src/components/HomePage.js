@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../style/HomePage.css";
 
 const HomePage = () => {
@@ -116,7 +116,7 @@ const HomePage = () => {
       <div className="listing-section">
         <h3>
           {listings.length > 0
-            ? `${listings.length} number of Listings Available`
+            ? `${listings.length} Listings that match your preferences`
             : "No listings found."}
         </h3>
 
@@ -131,11 +131,17 @@ const HomePage = () => {
                   className="listing-title"
                   onClick={() => goToBooking(listing.listing_id || listing._id)}
                 >
-                  {listing.name}
+                  <Link
+                    to={`/booking?listing_id=${
+                      listing.listing_id || listing._id
+                    }`}
+                  >
+                    {listing.name}
+                  </Link>
                 </h4>
                 <p>{listing.summary || "No summary available."}</p>
                 <p>
-                  <strong>Price:</strong>{" "}
+                  <strong>Daily Rate:</strong>{" "}
                   {listing.price?.$numberDecimal
                     ? `$${listing.price.$numberDecimal}`
                     : listing.price
@@ -144,7 +150,7 @@ const HomePage = () => {
                   per night
                 </p>
                 <p>
-                  <strong>Rating:</strong>{" "}
+                  <strong>Customer Rating:</strong>{" "}
                   {listing.review_score?.$numberDecimal ||
                     listing.review_score ||
                     "Not rated"}

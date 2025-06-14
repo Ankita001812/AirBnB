@@ -140,17 +140,19 @@ body{
   box-shadow: 0 8px 40px rgb(244, 177, 222);
 }
 
-.listing-title {
+.listing-title a{
   font-size: 18px;
   font-weight: bold;
   color: #86a6ca;
   margin-bottom: 10px;
   cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.listing-title:hover {
-  color: #0e5da8;
-  text-decoration: underline;
+.listing-title a:hover {
+  color: #496987;
+  text-decoration: none;
 }
 
 .listing-card p {
