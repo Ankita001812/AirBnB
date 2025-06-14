@@ -46,7 +46,10 @@ const BookingPage = () => {
       console.log("Response:", response);
 
       if (response.ok) {
+
+        const booking = await response.json(); 
         alert("Booking submitted successfully!");
+        navigate("/confirmation", { state: { booking } }); 
 
         setFormData({
           startDate: "",
@@ -58,7 +61,7 @@ const BookingPage = () => {
           homeAddress: "",
         });
 
-        navigate("/");
+        // navigate("/");
       } else {
         alert("Failed to submit booking");
       }

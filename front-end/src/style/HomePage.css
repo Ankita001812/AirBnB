@@ -73,8 +73,12 @@ body{
   padding: 8px;
   font-size: 16px;
   border-radius: 3px;
+  background-color: #3a3a3a;
   border: 1px solid #9e9b9b;
   box-sizing: border-box;
+  color: #f9fbfb;
+  font-weight: bolder;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 /* Submit button styles */

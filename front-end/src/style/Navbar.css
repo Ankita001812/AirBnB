@@ -1,7 +1,7 @@
 .navbar {
   /* position: fixed; */
     position: fixed;
-    height: 80px;
+    height: 100px;
   top: 0;
   left: 0;
   right: 0;
@@ -27,12 +27,14 @@
 }
 
 .navbar-links li a {
+  height: auto;
   color: white;
   text-decoration: none;
   font-weight: 500;
   padding: 8px 20px; 
   border-radius: 50px; 
   transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(241, 200, 244, 0.4);
 }
 
 .navbar-links li a:hover {
@@ -45,11 +47,12 @@
   height: 40px;
   width: auto;
   transition: transform 0.4s ease;
-  border-radius: 50px;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(241, 200, 244, 0.4);
 }
 
 .navbar-logo img:hover {
-  transform: scale(1.2) rotate(-2deg);
+  transform: scale(1.4) rotate(-3deg);
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(241, 200, 244, 0.4);
 }
