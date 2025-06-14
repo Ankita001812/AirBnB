@@ -48,7 +48,7 @@ async function startServer() {
   app.use("/api", listingRoutes);
 
   // Booking route uses Mongoose models
-  const bookingsRoute = require("./routes/bookings");
+  const bookingsRoute = require("./routes/bookings")(db);
   app.use("/api", bookingsRoute);
 
   // 404 and error handlers

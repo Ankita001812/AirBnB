@@ -15,7 +15,7 @@ const Navbar = () => {
           <Link to="/">Property Listing</Link>
         </li> */}
         <li>
-          <Link to="/booking">Bookings</Link>
+          <Link to="/all-bookings">Bookings</Link>
         </li>
       </ul>
     </nav>
