@@ -1,5 +1,5 @@
 
-.body{
+body{
   background: black;
   /* height: 100vh;
   display: flex;
@@ -14,10 +14,11 @@
 .container {
   /* max-width: 1300px;
    */
+   padding-top: 100px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  /* padding: 40px; */
   font-family: Arial, sans-serif;
   /* background-color: #f9f9f9; */
   color: rgb(223, 222, 222);
@@ -72,7 +73,7 @@
   padding: 8px;
   font-size: 16px;
   border-radius: 3px;
-  border: 1px solid #ccc;
+  border: 1px solid #9e9b9b;
   box-sizing: border-box;
 }
 
@@ -82,7 +83,7 @@
   justify-self: center;
   background-color: #671c59;
   font-weight: bolder;
-  color: white;
+  color: rgb(254, 254, 254);
   border: none;
   padding: 12px 40px; /* wide for oval */
   font-size: 16px;
@@ -95,7 +96,8 @@
 /* Hover effect for submit button */
 .filter-form button[type="submit"]:hover {
   background-color: #a75c95;
-  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(241, 200, 244, 0.4);
+  transform: scale(1.06);
 }
 
 /* Error message */
