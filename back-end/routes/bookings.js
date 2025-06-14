@@ -51,6 +51,9 @@ module.exports = function (db) {
               "listingDetails.address.street": 1,
             },
           },
+          {
+            $sort: { createdAt: -1 },
+          },
         ])
         .toArray();
 
