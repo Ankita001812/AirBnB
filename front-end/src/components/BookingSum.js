@@ -32,6 +32,7 @@ const BookingSum = () => {
         <div className="booking-list">
           {bookings.map((booking) => (
             <div key={booking._id} className="booking-card">
+              <h4> Client Info</h4>
               <h3>{booking.clientName}</h3>
               <p><strong>Email:</strong> {booking.email}</p>
               <p><strong>Phone:</strong> {booking.mobilePhone || "N/A"}</p>
