@@ -1,26 +1,17 @@
-
-body{
+body {
   background: black;
-  /* height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
-  padding: 0 10px; /* adds space around the container on very small screens */
+  padding: 0 10px;
   background-color: black;
   margin: 0;
 }
+
 /* Container and general styles */
 .container {
-  /* max-width: 1300px;
-   */
-   padding-top: 100px;
+  padding-top: 100px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  /* padding: 40px; */
   font-family: Arial, sans-serif;
-  /* background-color: #f9f9f9; */
   color: rgb(223, 222, 222);
   background: #070707;
 }
@@ -31,7 +22,6 @@ body{
   font-weight: bolder;
   font-family: cursive;
   margin-bottom: 20px;
-  
 }
 
 /* Filter Form - layout with grid */
@@ -41,32 +31,29 @@ body{
   border-radius: 5px;
   margin-bottom: 30px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
   align-items: center;
 }
 
-/* Required Location field centered, spanning two columns */
+/* Required Location field centered */
 .filter-form .form-group:first-child {
   grid-column: 1 / span 2;
   justify-self: center;
-  width: 50%; /* optional to control width */
+  width: 50%;
 }
 
-/* The other two fields side by side */
 .filter-form .form-group:nth-child(2),
 .filter-form .form-group:nth-child(3) {
   width: 100%;
 }
 
-/* Labels */
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-/* Inputs and selects */
 .form-group input,
 .form-group select {
   width: 100%;
@@ -81,7 +68,7 @@ body{
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Submit button styles */
+/* Submit button */
 .filter-form button[type="submit"] {
   grid-column: 1 / span 2;
   justify-self: center;
@@ -89,15 +76,14 @@ body{
   font-weight: bolder;
   color: rgb(254, 254, 254);
   border: none;
-  padding: 12px 40px; /* wide for oval */
+  padding: 12px 40px;
   font-size: 16px;
-  border-radius: 30px; /* oval shape */
+  border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   margin-top: 10px;
 }
 
-/* Hover effect for submit button */
 .filter-form button[type="submit"]:hover {
   background-color: #a75c95;
   box-shadow: 0 4px 10px rgba(241, 200, 244, 0.4);
@@ -111,20 +97,28 @@ body{
 }
 
 /* Listing section */
-.listing-section h3 {
-  margin-bottom: 45px;
+.listing-section h3,
+.listing-section h4 {
+  margin-bottom: 55px;
   text-align: center;
-  color: #ba7398;
+  color: #c784a7;
   font-weight: bolder;
-  size: 60px;
-  font-size: larger;
+  /* font-size: larger; */
 }
+
+
 
 /* Listing grid */
 .listing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
+}
+
+/* Remove underline and blue from all links */
+.listing-grid a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Listing card */
@@ -144,7 +138,8 @@ body{
   box-shadow: 0 8px 40px rgb(244, 177, 222);
 }
 
-.listing-title a{
+/* Title link with special color + hover */
+.listing-title a {
   font-size: 18px;
   font-weight: bold;
   color: #86a6ca;

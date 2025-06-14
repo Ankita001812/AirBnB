@@ -120,13 +120,21 @@ const HomePage = () => {
             : "No listings found."}
         </h3>
 
+        <h4>Click on a listing to book your stay!</h4>
+
         {listings.length > 0 && (
           <div className="listing-grid">
             {listings.map((listing) => (
+              <Link
+                    to={`/booking?listing_id=${
+                      listing.listing_id || listing._id
+                    }`}
+                  >
               <div
                 key={listing.listing_id || listing._id}
                 className="listing-card"
               >
+
                 <h4
                   className="listing-title"
                   onClick={() => goToBooking(listing.listing_id || listing._id)}
@@ -156,7 +164,8 @@ const HomePage = () => {
                     "Not rated"}
                 </p>
               </div>
-            ))}
+            
+              </Link>))}
           </div>
         )}
       </div>
