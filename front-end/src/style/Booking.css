@@ -66,3 +66,9 @@
   transform: scale(1.05); /* hover effect */
   box-shadow: 0 4px 10px rgba(241, 200, 244, 0.4); /* optional glow effect */
 }
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}

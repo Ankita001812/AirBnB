@@ -18,21 +18,72 @@ const BookingPage = () => {
     homeAddress: "",
   });
 
+  const [errors, setErrors] = useState({});
+
+  
+  const today = new Date().toISOString().split("T")[0];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+    setErrors((prev) => ({ ...prev, [name]: "" })); 
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    const nameRegex = /^[A-Za-z\s'-]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex = /^\+?[0-9\s-]{7,15}$/;
+
+    // Check-in date (startDate) validation
+    if (!formData.startDate) {
+      newErrors.startDate = "Check-in date is required.";
+    } else if (formData.startDate <= today) {
+      newErrors.startDate = "Check-in date must be after today.";
+    }
+
+    // Check-out date (endDate) validation
+    if (!formData.endDate) {
+      newErrors.endDate = "Check-out date is required.";
+    } else if (formData.startDate && formData.endDate <= formData.startDate) {
+      newErrors.endDate = "Check-out must be after check-in date.";
+    }
+
+    // Full Name validation
+    if (!formData.clientName.trim()) {
+      newErrors.clientName = "Full name is required.";
+    } else if (!nameRegex.test(formData.clientName)) {
+      newErrors.clientName = "Name can only contain letters, spaces, apostrophes, and hyphens.";
+    }
+
+    // Email validation
+    if (!formData.email) {
+      newErrors.email = "Email is required.";
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Enter a valid email address.";
+    }
+
+    // Mobile number validation (optional)
+    if (formData.mobilePhone && !phoneRegex.test(formData.mobilePhone)) {
+      newErrors.mobilePhone = "Enter a valid mobile number.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const listingId = searchParams.get("listing_id");
+
     if (!listingId) {
       alert("No listing selected for booking.");
       return;
     }
+
+    if (!validateForm()) return;
 
     try {
       const response = await fetch("http://localhost:4001/api/booking", {
@@ -43,13 +94,10 @@ const BookingPage = () => {
         body: JSON.stringify({ ...formData, listingId }),
       });
 
-      console.log("Response:", response);
-
       if (response.ok) {
-
-        const booking = await response.json(); 
-        alert(" 🎉 Booking submitted successfully! ");
-        navigate("/confirmation", { state: { booking } }); 
+        const booking = await response.json();
+        alert("🎉 Booking submitted successfully!");
+        navigate("/confirmation", { state: { booking } });
 
         setFormData({
           startDate: "",
@@ -60,8 +108,6 @@ const BookingPage = () => {
           postalAddress: "",
           homeAddress: "",
         });
-
-        // navigate("/");
       } else {
         alert("Failed to submit booking");
       }
@@ -82,8 +128,10 @@ const BookingPage = () => {
             name="startDate"
             value={formData.startDate}
             onChange={handleChange}
+            min={today}
             required
           />
+          {errors.startDate && <p className="error">{errors.startDate}</p>}
         </div>
 
         <div>
@@ -93,8 +141,10 @@ const BookingPage = () => {
             name="endDate"
             value={formData.endDate}
             onChange={handleChange}
+            min={today}
             required
           />
+          {errors.endDate && <p className="error">{errors.endDate}</p>}
         </div>
 
         <h2>Your Information</h2>
@@ -106,9 +156,10 @@ const BookingPage = () => {
             name="clientName"
             value={formData.clientName}
             onChange={handleChange}
-            required
             placeholder="Full Name"
+            required
           />
+          {errors.clientName && <p className="error">{errors.clientName}</p>}
         </div>
 
         <div>
@@ -118,9 +169,10 @@ const BookingPage = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            required
             placeholder="example@example.com"
+            required
           />
+          {errors.email && <p className="error">{errors.email}</p>}
         </div>
 
         <div>
@@ -132,6 +184,7 @@ const BookingPage = () => {
             onChange={handleChange}
             placeholder="e.g. +61 555 654321"
           />
+          {errors.mobilePhone && <p className="error">{errors.mobilePhone}</p>}
         </div>
 
         <div>
