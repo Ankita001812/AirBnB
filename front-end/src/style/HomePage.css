@@ -37,7 +37,8 @@ body {
 }
 
 /* Required Location field centered */
-.filter-form .form-group:first-child {
+.filter-form .form-group:nth-child(1),
+.filter-form .form-group:nth-child(4) {
   grid-column: 1 / span 2;
   justify-self: center;
   width: 50%;

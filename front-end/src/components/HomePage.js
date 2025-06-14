@@ -7,6 +7,7 @@ const HomePage = () => {
     location: "",
     propertyType: "",
     bedrooms: "",
+    price: "",
   });
 
   const [listings, setListings] = useState([]);
@@ -106,6 +107,19 @@ const HomePage = () => {
             <option value="4">4+ Bedrooms</option>
           </select>
         </div>
+        <div className="form-group">
+          <label>Price Range</label>
+          <select name="price" onChange={handleChange} value={filters.price}>
+            <option value="">Any</option>
+            <option value="50">$50 and below</option>
+            <option value="100">$50 - $100</option>
+            <option value="200">$100 - $200</option>
+            <option value="300">$200 - $300</option>
+            <option value="500">$300 - $500</option>
+            <option value="1000">$500 and above</option>
+          </select>
+        </div>
+      
 
         <button type="submit">Search</button>
       </form>

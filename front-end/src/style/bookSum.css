@@ -1,5 +1,7 @@
 /* BookingSummary.css */
-
+body{
+  background-color: #010101;
+}
 .booking-summary-container {
   max-width: 900px;
   margin: 100px auto;
