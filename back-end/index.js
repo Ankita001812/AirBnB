@@ -40,12 +40,14 @@ connectToDatabase();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Import routes with DB
-// const movieRoutes = require("./routes/movieRoute")(db);
-// app.use("/api", movieRoutes);
 
-const movieRoutes = require("./routes/listingRoute")(db);
-app.use("/api", movieRoutes);
+
+// ******* Routes ********
+const listingRoutes = require("./routes/listingRoute")(db);
+app.use("/api", listingRoutes);
+
+const bookingsRoute = require("./routes/bookings");
+app.use("/api", bookingsRoute);
 
 app.use((req, res) => {
   res.status(404).send("Not found");
@@ -55,6 +57,7 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Internal server error");
 });
+
 
 // Start server
 const PORT = process.env.PORT || 4001;
