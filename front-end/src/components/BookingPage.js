@@ -35,7 +35,7 @@ const BookingPage = () => {
     const newErrors = {};
     const nameRegex = /^[A-Za-z\s'-]+$/;
     const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    const phoneRegex = /^\+?[0-9\s-]{7,15}$/;
+    const phoneRegex = /^\+?[0-9\s-]{9,15}$/;
 
     if (!formData.startDate) {
       newErrors.startDate = "Check-in date is required.";
@@ -180,8 +180,8 @@ const BookingPage = () => {
             name="mobilePhone"
             value={formData.mobilePhone}
             onChange={handleChange}
-            pattern="^\+?[0-9]{9,12}$"
-            title="Enter a valid mobile number from 9 to 12 digits"
+            pattern="^\+?[0-9]{9,15}$"
+            title="Enter a valid mobile number from 9 to 15 digits"
             placeholder="e.g. +61555654321"
           />
           {errors.mobilePhone && <p className="error">{errors.mobilePhone}</p>}
