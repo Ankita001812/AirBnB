@@ -77,7 +77,7 @@ const HomePage = () => {
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Property Type</label>
           <select
             name="propertyType"
@@ -91,11 +91,45 @@ const HomePage = () => {
             <option value="Loft">Loft</option>
             <option value="Townhouse">Townhouse</option>
           </select>
+        </div> */}
+        <div className="form-group">
+          <label>Property Type</label>
+          <input
+            list="property-types"
+            name="propertyType"
+            value={filters.propertyType}
+            onChange={handleChange}
+            placeholder="e.g. Apartment, villa, house..."
+          />
+          <datalist id="property-types">
+            <option value="Apartment" />
+            <option value="House" />
+            <option value="Condominium" />
+            <option value="Loft" />
+            <option value="Townhouse" />
+            <option value="Bungalow" />
+            <option value="Cabin" />
+            <option value="Villa" />
+            <option value="Cottage" />
+            <option value="Guesthouse" />
+            <option value="Guest suite" />
+            <option value="Hostel" />
+            <option value="Hotel" />
+            <option value="Tiny house" />
+            <option value="Farm stay" />
+            <option value="Chalet" />
+            <option value="Tent" />
+            <option value="Boat" />
+            <option value="Castle" />
+            <option value="Houseboat" />
+            <option value="Mansion" />
+            <option value="Studio" />
+          </datalist>
         </div>
 
         <div className="form-group">
           <label>Bedrooms</label>
-          <select
+          {/* <select
             name="bedrooms"
             value={filters.bedrooms}
             onChange={handleChange}
@@ -105,7 +139,16 @@ const HomePage = () => {
             <option value="2">2 Bedrooms</option>
             <option value="3">3 Bedrooms</option>
             <option value="4">4+ Bedrooms</option>
-          </select>
+          </select> */}
+          <input
+            type="number"
+            name="bedrooms"
+            value={filters.bedrooms}
+            onChange={handleChange}
+            placeholder="Number of Bedrooms"
+            min="0"
+            max="12"
+          />
         </div>
         <div className="form-group">
           <label>Price Range</label>
@@ -139,18 +182,17 @@ const HomePage = () => {
           <div className="listing-grid">
             {listings.map((listing) => (
               <Link
-                    to={`/booking?listing_id=${
-                      listing.listing_id || listing._id
-                    }`}
+                to={`/booking?listing_id=${listing.listing_id || listing._id}`}
               >
                 <div
                   key={listing.listing_id || listing._id}
                   className="listing-card"
                 >
-
                   <h4
                     className="listing-title"
-                  onClick={() => goToBooking(listing.listing_id || listing._id)}
+                    onClick={() =>
+                      goToBooking(listing.listing_id || listing._id)
+                    }
                   >
                     <Link
                       to={`/booking?listing_id=${
@@ -177,8 +219,8 @@ const HomePage = () => {
                       "Not rated"}
                   </p>
                 </div>
-            
-              </Link>))}
+              </Link>
+            ))}
           </div>
         )}
       </div>

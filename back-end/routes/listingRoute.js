@@ -18,7 +18,8 @@ module.exports = function (db) {
         ];
 
         if (propertyType) {
-          filter.property_type = propertyType;
+          // filter.property_type = propertyType;
+          filter.property_type = { $regex: `^${propertyType}$`, $options: "i" };
         }
 
         if (bedrooms && !isNaN(bedrooms)) {
