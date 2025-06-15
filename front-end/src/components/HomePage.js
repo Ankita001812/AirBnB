@@ -111,15 +111,14 @@ const HomePage = () => {
           <label>Price Range</label>
           <select name="price" onChange={handleChange} value={filters.price}>
             <option value="">Any</option>
-            <option value="50">$50 and below</option>
-            <option value="100">$50 - $100</option>
-            <option value="200">$100 - $200</option>
-            <option value="300">$200 - $300</option>
-            <option value="500">$300 - $500</option>
-            <option value="1000">$500 and above</option>
+            <option value="0-50">$50 and below</option>
+            <option value="50-100">$50 - $100</option>
+            <option value="100-200">$100 - $200</option>
+            <option value="200-300">$200 - $300</option>
+            <option value="300-500">$300 - $500</option>
+            <option value="500-1000000">$500 and above</option>
           </select>
         </div>
-      
 
         <button type="submit">Search</button>
       </form>
@@ -140,46 +139,45 @@ const HomePage = () => {
           <div className="listing-grid">
             {listings.map((listing) => (
               <Link
-                    to={`/booking?listing_id=${
-                      listing.listing_id || listing._id
-                    }`}
-                  >
-              <div
-                key={listing.listing_id || listing._id}
-                className="listing-card"
+                to={`/booking?listing_id=${listing.listing_id || listing._id}`}
               >
-
-                <h4
-                  className="listing-title"
-                  onClick={() => goToBooking(listing.listing_id || listing._id)}
+                <div
+                  key={listing.listing_id || listing._id}
+                  className="listing-card"
                 >
-                  <Link
-                    to={`/booking?listing_id=${
-                      listing.listing_id || listing._id
-                    }`}
+                  <h4
+                    className="listing-title"
+                    onClick={() =>
+                      goToBooking(listing.listing_id || listing._id)
+                    }
                   >
-                    {listing.name}
-                  </Link>
-                </h4>
-                <p>{listing.summary || "No summary available."}</p>
-                <p>
-                  <strong>Daily Rate:</strong>{" "}
-                  {listing.price?.$numberDecimal
-                    ? `$${listing.price.$numberDecimal}`
-                    : listing.price
-                    ? `$${listing.price}`
-                    : "N/A"}{" "}
-                  per night
-                </p>
-                <p>
-                  <strong>Customer Rating:</strong>{" "}
-                  {listing.review_score?.$numberDecimal ||
-                    listing.review_score ||
-                    "Not rated"}
-                </p>
-              </div>
-            
-              </Link>))}
+                    <Link
+                      to={`/booking?listing_id=${
+                        listing.listing_id || listing._id
+                      }`}
+                    >
+                      {listing.name}
+                    </Link>
+                  </h4>
+                  <p>{listing.summary || "No summary available."}</p>
+                  <p>
+                    <strong>Daily Rate:</strong>{" "}
+                    {listing.price?.$numberDecimal
+                      ? `$${listing.price.$numberDecimal}`
+                      : listing.price
+                      ? `$${listing.price}`
+                      : "N/A"}{" "}
+                    per night
+                  </p>
+                  <p>
+                    <strong>Customer Rating:</strong>{" "}
+                    {listing.review_score?.$numberDecimal ||
+                      listing.review_score ||
+                      "Not rated"}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         )}
       </div>

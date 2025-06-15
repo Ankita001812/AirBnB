@@ -28,10 +28,22 @@ module.exports = function (db) {
         // if (price && !isNaN(price)) {
         //   filter.price = { $regex: `^${price}`, $options: "i" };
         // }
+
+        //       if (price && !isNaN(price)) {
+        // filter.$expr = {
+        //   $eq: [{ $toDecimal: "$price" }, { $toDecimal: price }],
+        // };
+
         if (price && !isNaN(price)) {
-          filter.$expr = {
-            $eq: [{ $toDecimal: "$price" }, { $toDecimal: price }],
-          };
+          if (price && price.includes("-")) {
+            const [min, max] = price.split("-").map(Number);
+            filter.$expr = {
+              $and: [
+                { $gte: [{ $toDecimal: "$price" }, { $toDecimal: min }] },
+                { $lte: [{ $toDecimal: "$price" }, { $toDecimal: max }] },
+              ],
+            };
+          } 
         }
       }
 
