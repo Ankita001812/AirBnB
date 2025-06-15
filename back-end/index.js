@@ -1,5 +1,8 @@
 const express = require("express");
 const { MongoClient } = require("mongodb");
+
+// This code initializes an Express server that connects to MongoDB using both the native MongoDB driver and Mongoose. It sets up routes for handling bookings and listings, with error handling and CORS support
+
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
