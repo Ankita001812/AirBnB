@@ -24,7 +24,7 @@
 - cd back-end
 - npm install (if the node modules are not avilable)
 - node index.js
-the back-end side will start on localhost://4001 port
+- The back-end side will start on localhost://4001 port
 
 
 
@@ -32,6 +32,7 @@ the back-end side will start on localhost://4001 port
 - cd front-end
 - npm install (if the node modules are not avilable)
 - npm start
+- The front-end side will start on localhost://3000 port
 
 
 ## The commands installing libaraies 
