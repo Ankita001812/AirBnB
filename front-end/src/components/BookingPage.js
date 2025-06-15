@@ -20,7 +20,6 @@ const BookingPage = () => {
 
   const [errors, setErrors] = useState({});
 
-  
   const today = new Date().toISOString().split("T")[0];
 
   const handleChange = (e) => {
@@ -29,37 +28,34 @@ const BookingPage = () => {
       ...prev,
       [name]: value,
     }));
-    setErrors((prev) => ({ ...prev, [name]: "" })); 
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
     const newErrors = {};
     const nameRegex = /^[A-Za-z\s'-]+$/;
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     const phoneRegex = /^\+?[0-9\s-]{7,15}$/;
 
-    // Check-in date (startDate) validation
     if (!formData.startDate) {
       newErrors.startDate = "Check-in date is required.";
     } else if (formData.startDate <= today) {
       newErrors.startDate = "Check-in date must be after today.";
     }
 
-    // Check-out date (endDate) validation
     if (!formData.endDate) {
       newErrors.endDate = "Check-out date is required.";
     } else if (formData.startDate && formData.endDate <= formData.startDate) {
       newErrors.endDate = "Check-out must be after check-in date.";
     }
 
-    // Full Name validation
     if (!formData.clientName.trim()) {
       newErrors.clientName = "Full name is required.";
     } else if (!nameRegex.test(formData.clientName)) {
-      newErrors.clientName = "Name can only contain letters, spaces, apostrophes, and hyphens.";
+      newErrors.clientName =
+        "Name can only contain letters, spaces, apostrophes, and hyphens.";
     }
 
-    // Email validation
     if (!formData.email) {
       newErrors.email = "Email is required.";
     } else if (!emailRegex.test(formData.email)) {
@@ -141,7 +137,7 @@ const BookingPage = () => {
             name="endDate"
             value={formData.endDate}
             onChange={handleChange}
-            min={today}
+            min={formData.startDate || today}
             required
           />
           {errors.endDate && <p className="error">{errors.endDate}</p>}
@@ -169,6 +165,8 @@ const BookingPage = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            title="Enter a valid email address (e.g. example@example.com)"
             placeholder="example@example.com"
             required
           />
@@ -182,7 +180,9 @@ const BookingPage = () => {
             name="mobilePhone"
             value={formData.mobilePhone}
             onChange={handleChange}
-            placeholder="e.g. +61 555 654321"
+            pattern="^\+?[0-9]{9,12}$"
+            title="Enter a valid mobile number from 9 to 12 digits"
+            placeholder="e.g. +61555654321"
           />
           {errors.mobilePhone && <p className="error">{errors.mobilePhone}</p>}
         </div>

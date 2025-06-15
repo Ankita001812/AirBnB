@@ -43,12 +43,9 @@ module.exports = function (db) {
               mobilePhone: 1,
               startDate: 1,
               endDate: 1,
-              createdAt: 1,
               "listingDetails.name": 1,
               "listingDetails.summary": 1,
               "listingDetails.address.country": 1,
-              "listingDetails.address.market": 1,
-              "listingDetails.address.street": 1,
             },
           },
           {

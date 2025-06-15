@@ -128,11 +128,11 @@ const HomePage = () => {
 
       {/* Listings */}
       <div className="listing-section">
-        <h3>
+        <h2>
           {listings.length > 0
             ? `${listings.length} Listings that match your preferences`
             : "No listings found."}
-        </h3>
+        </h2>
 
         <h4>Click on a listing to book your stay!</h4>
 
